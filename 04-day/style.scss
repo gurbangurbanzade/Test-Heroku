@@ -1,0 +1,30 @@
+@import "mixin";
+@import "color";
+
+.class-1 {
+  @include daire(red, 50px);
+  @include flex;
+}
+
+.class-2 {
+  @include daire(blue, 100px);
+  @include flex;
+}
+
+.class-3 {
+  @include daire(yellow, 150px);
+  @include flex;
+}
+
+.btn {
+  @include btn;
+}
+
+.primary {
+  background-color: $primary;
+  color: white;
+}
+.warning {
+  background-color: $warning;
+  color: white;
+}

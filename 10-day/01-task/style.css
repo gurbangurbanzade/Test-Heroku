@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #e9e4e4;
+  padding-top: 30px;
+  font-family: "Roboto", sans-serif;
+}
+section {
+  width: 210px;
+  margin: auto;
+  color: white;
+  background-color: #1c1c1c;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  font-size: 30px;
+}
+header {
+  height: 80px;
+  text-align: left;
+  font-size: bold;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.active {
+  display: block;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.row {
+  display: flex;
+  gap: 2px;
+}
+.row div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+.rowEnd {
+  display: flex;
+  gap: 2px;
+}
+.footerLeft {
+  width: 50% !important;
+}
+.footerRight {
+  width: 49.5% !important;
+  gap: 2px;
+}
+
+.operate {
+  background-color: #ff9500;
+  font-weight: bold;
+}
+.number,
+.numberDot {
+  background-color: #505050;
+}
+.clear,
+.change,
+.percent {
+  background-color: #9f9f9f;
+  color: black;
+}
+
+.result {
+  background-color: #505050;
+  font-weight: bold;
+}

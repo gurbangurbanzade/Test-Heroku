@@ -1,0 +1,37 @@
+section {
+  border: 2px solid black;
+  padding: 10px;
+  width: 90%;
+  height: 90vh;
+  display: flex;
+}
+.left {
+  width: 70%;
+  height: 100%;
+  border: 2px solid black;
+  margin-right: 10px;
+  position: relative;
+}
+
+.right {
+  width: 30%;
+  height: 100%;
+  border: 2px solid black;
+}
+
+.bubble {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(166, 41, 166);
+  position: absolute;
+  /* top: 0;
+  left: 0; */
+  border-radius: 50%;
+  margin: 20px;
+  border: 5px solid rgb(5, 238, 79);
+}
+.text {
+  width: 100%;
+  border: 2px solid black;
+  height: 50%;
+}
