@@ -1,12 +1,13 @@
 import "./App.css";
 import Routx from "./16-Day-Context-Api/Routx";
 import { ContextDataProvider } from "./16-Day-Context-Api/ContextData";
+import Products from "./Formik example/Products";
 
 function App() {
   return (
     <>
       <ContextDataProvider>
-        <Routx />
+        <Products />
       </ContextDataProvider>
     </>
   );
