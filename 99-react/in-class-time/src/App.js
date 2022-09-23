@@ -1,12 +1,12 @@
 import "./App.css";
 import { ContextDataProvider } from "./16-Day-Context-Api/ContextData";
-import Slider from "./17-Day-Slider/Slider";
+import AndProject from "./18-Day-AndD/AndProject";
 
 function App() {
   return (
     <>
       <ContextDataProvider>
-        <Slider />
+        <AndProject />
       </ContextDataProvider>
     </>
   );

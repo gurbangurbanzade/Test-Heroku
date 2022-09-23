@@ -5,7 +5,7 @@ import SimpleImageSlider from "react-simple-image-slider";
 import styles from "./style.module.css";
 import Carousel from "react-bootstrap/Carousel";
 
-export default function Slider() {
+export function Slider() {
   const [source, setSource] = useState([]);
   useEffect(() => {
     axios.get(`https://picsum.photos/v2/list`).then((response) => {
@@ -13,8 +13,6 @@ export default function Slider() {
       setSource(response.data);
     });
   }, []);
-
-  // console.log(source);
 
   return (
     <Carousel className={`${styles.carusel} container`}>
