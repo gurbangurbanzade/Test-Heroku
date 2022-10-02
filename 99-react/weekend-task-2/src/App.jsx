@@ -1,34 +1,100 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import "./App.css";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { getData } from "./actions/action";
+import React from "react";
+import axios from "axios";
+import { Button, Form, Input, Popconfirm, Table } from "antd";
+import "antd/dist/antd.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const uniData = useSelector((store) => store.universty);
+  const [driver, setDriver] = useState([]);
 
+  const searchUni = () => {};
+  useEffect(() => {
+    axios.get("http://ergast.com/api/f1/drivers.json").then((res) => {
+      setDriver(res.data.MRData.DriverTable.Drivers);
+    });
+  }, []);
+  console.log("driver", driver);
+
+  const driverList = [];
+
+  driver.forEach((item, i) => {
+    item.key = i;
+    driverList.push(item);
+  });
+
+  console.log("driverList", driverList);
+
+  const handleDelete = (key) => {
+    const newData = driverList.filter((item) => item.key !== key);
+    setDriver(newData);
+  };
+
+  const columns = [
+    {
+      title: " Driver Name",
+      dataIndex: "familyName",
+      render: (text) => <a>{text}</a>,
+      key: "familyName",
+    },
+    {
+      title: "Permanent Number",
+      dataIndex: "permanentNumber",
+      key: "permanentNumber",
+    },
+    {
+      title: "Nationality",
+      dataIndex: "nationality",
+      key: "nationality",
+    },
+    {
+      title: "DOB",
+      dataIndex: "dateOfBirth",
+      key: "dateOfBirth",
+    },
+    {
+      title: "Information",
+      dataIndex: "url",
+      key: "url",
+    },
+    {
+      title: "operation",
+      dataIndex: "operation",
+      render: (_, record) =>
+        driverList.length >= 1 ? (
+          <Popconfirm
+            title="Sure to delete?"
+            onConfirm={() => handleDelete(record.key)}
+          >
+            <a>Delete</a>
+          </Popconfirm>
+        ) : null,
+    },
+  ];
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      salam
+      <br />
+      <input
+        type="text"
+        onChange={(e) => {
+          setUniName("=" + e.target.value);
+        }}
+      />
+      <button onClick={searchUni}>Search</button>
+      <ul>
+        {uniData.status === "success" &&
+          uniData.data.MRData.DriverTable.Drivers.map((data, i) => {
+            return <li key={i}>{data.driverId}</li>;
+          })}
+      </ul>
+      <Table dataSource={driverList} columns={columns} />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
