@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { getData } from "./actions/action";
+import React from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  const uniData = useSelector((store) => store.universty);
+  const [uniName, setUniName] = useState("=");
 
+  const searchUni = () => {
+    console.log("salam");
+    console.log(uniName);
+    dispatch(getData(uniName));
+  };
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      salam
+      <br />
+      <input
+        type="text"
+        onChange={(e) => {
+          setUniName("=" + e.target.value);
+        }}
+      />
+      <button onClick={searchUni}>Search</button>
+      <ul>
+        {uniData.status === "success" &&
+          uniData.data.map((data, i) => {
+            return <li key={i}>{data.name}</li>;
+          })}
+      </ul>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
