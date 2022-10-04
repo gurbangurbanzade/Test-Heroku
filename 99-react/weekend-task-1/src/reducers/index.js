@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import { universty } from "./universty";
+import { universtyReducer } from "./universty";
+
 export const reducer = combineReducers({
-  universty: universty,
+  universtyReducer,
 });

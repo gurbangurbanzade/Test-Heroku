@@ -1,24 +1,16 @@
-import { getPayload } from "../utils";
 import axios from "axios";
 
-export const getData = (name) => {
-  const type = "listData";
-  //   const link = "http://universities.hipolabs.com/search?name";
-  //   const link = "http://universities.hipolabs.com/search?name" + name;
-  //   console.log("name", link);
-
+export const searchUniAction = (name) => {
   return async (dispatch) => {
-    dispatch({ type: type, payload: getPayload("pending", null) });
+    dispatch({ type: "SEARCH_START" });
     await axios
-      .get("http://universities.hipolabs.com/search?name" + name)
+      .get("http://universities.hipolabs.com/search?name=" + name)
       .then((res) => {
         dispatch({
-          type: type,
-          payload: getPayload("success", res.data),
+          type: "SEARCH_SUCCES",
+          payload: res.data,
         });
       })
-      .catch((err) =>
-        dispatch({ type: type, payload: getPayload("error", err) })
-      );
+      .catch((err) => dispatch({ type: "SEARCH_ERROR", payload: err }));
   };
 };
