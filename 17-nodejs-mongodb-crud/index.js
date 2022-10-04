@@ -22,6 +22,40 @@ const productSchema = new Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
+//GETALL
+app.get("/products", (req, res) => {
+  Product.find({}, (err, docs) => {
+    if (!err) {
+      res.json(docs);
+    } else {
+      res.status(500).json(err);
+    }
+  });
+});
+
+//GET id
+app.get("/products/:id", (req, res) => {
+  let id = req.params.id;
+
+  Product.findById(id, (err, doc) => {
+    if (!err) {
+      if (doc) res.json(doc);
+      else res.status(404).json({ message: "Not found!" });
+    } else {
+      res.status(500).json(err);
+    }
+  });
+});
+// Delete
+app.delete("/products/:id", (req, res) => {
+  let id = req.params.id;
+  Product.findByIdAndDelete(id, (err) => {
+    if (!err) res.json({ messagae: "Success!" });
+    else res.status(500).json(err);
+  });
+});
+
+//Post
 app.post("/products", (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -34,17 +68,6 @@ app.post("/products", (req, res) => {
   });
   product.save();
   res.send("Success!!");
-});
-
-app.get("/products", (req, res) => {
-  //GETALL
-  Product.find({}, (err, docs) => {
-    if (!err) {
-      res.json(docs);
-    } else {
-      res.status(500).json(err);
-    }
-  });
 });
 
 app.listen(3000, () => {
