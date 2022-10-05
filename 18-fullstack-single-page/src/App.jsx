@@ -11,10 +11,9 @@ function App() {
       <Link to="/home">Home</Link>
       <Link to="/about">About</Link>
       <Link to="/users">Users</Link>
-      <Link to="/addUser">Add</Link>
       <Link to="/deleteUser">Delete</Link>
       <Link to="/editUser">Edit</Link>
-      <Link to="/Signup">Sign</Link>
+      <Link to="/Signup">Add</Link>
 
       <AllRoutes />
     </>
