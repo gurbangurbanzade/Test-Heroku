@@ -17,6 +17,7 @@ export const Signup = () => {
         if (this.isType(value)) {
           return value;
         }
+        // eslint-disable-next-line no-undef
         const result = parse(originalValue, "dd.MM.yyyy", new Date());
         return result;
       })
@@ -32,16 +33,16 @@ export const Signup = () => {
         firstname: "",
         lastname: "",
         birthdate: "",
-
         email: "",
       }}
       validationSchema={validate}
-      onSubmit={(values) => {
-        console.log(values);
-        axios.post("http://localhost:3000/products", values);
+      onSubmit={(values, { resetForm }) => {
+        axios.post("http://localhost:3000/products", values).then(() => {
+          resetForm();
+        });
       }}
     >
-      {(formik) => (
+      {() => (
         <div>
           <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
           <Form>
@@ -58,7 +59,7 @@ export const Signup = () => {
               Reset
             </button>
           </Form>
-        </div>
+                         </div>
       )}
     </Formik>
   );

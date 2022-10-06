@@ -20,7 +20,7 @@ export default function users() {
     axios
       .get("http://localhost:3000/products")
       .then((res) => setUserList(res.data));
-  }, []);
+  }, [userList]);
   return (
     <div>
       <TableContainer>
@@ -32,6 +32,8 @@ export default function users() {
               <Th>Lastname</Th>
               <Th>Birthdate</Th>
               <Th>Email </Th>
+              <Th></Th>
+              <Th></Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -42,6 +44,20 @@ export default function users() {
                   <Td>{user.lastname}</Td>
                   <Td>{user.birthdate}</Td>
                   <Td>{user.email}</Td>
+                  <Td>
+                    <button
+                      onClick={() => {
+                        axios.delete(
+                          `http://localhost:3000/products/${user._id}`
+                        );
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </Td>
+                  <Td>
+                    <button>Edit</button>
+                  </Td>
                 </Tr>
               );
             })}

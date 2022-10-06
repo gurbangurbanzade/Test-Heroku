@@ -1,18 +1,15 @@
-import { useState } from "react";
+import React from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
 import AllRoutes from "./routes/allRoutes";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Link to="/home">Home</Link>
       <Link to="/about">About</Link>
       <Link to="/users">Users</Link>
-      <Link to="/deleteUser">Delete</Link>
-      <Link to="/editUser">Edit</Link>
+
       <Link to="/Signup">Add</Link>
 
       <AllRoutes />
